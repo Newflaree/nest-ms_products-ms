@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { envs } from './config';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +14,7 @@ async function bootstrap() {
     })
   );
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(envs.port ?? 3000);
+  console.log( `Àpp running on port: ${ envs.port }` );
 }
 bootstrap();
